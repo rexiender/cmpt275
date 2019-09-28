@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="calculator" content="calculator mean and weighted mean">
+    <title>Formula Tester</title>
+    <link rel="stylesheet" href="calculator.css">
+    <script src="calculator.js"></script>
+
+
+    </script>
+  </head>
+  
+
+  <body style="background-color:darkred">
+   <div id='blacklayer'>
+   </div>
+
+   <div id='whitelayer'>
+         <h2>
+           <span>
+            Grade Calculator
+            </span>
+         </h2>
+     </div>
+
+    <div id="bluelayer">
+         <p style='color:darkred'><b>Activities</b></p>
+         <p>Give grades to the numeric activities:</p>
+
+         <style>
+         table, th, td {
+           border: 1px solid black;
+           border-collapse: collapse;
+         }
+         td {
+           padding: 5px;
+           text-align: left;
+         }
+         </style>
+
+
+         <table style="width:100%">
+           <tr>
+             <th align="left" style="background-color:lightgrey"><space>Name</th>
+             <th align="left" style="background-color:lightgrey"><space>Short Name</th>
+             <th align="left" style="background-color:lightgrey"><space>Weight</th>
+             <th align="left" style="background-color:lightgrey"><space>Grade</th>
+             <th align="left" style="background-color:lightgrey"><space>Percent</th>
+           </tr>
+           <tr>
+             <td>Activity 1</td>
+             <td>A1</td>
+             <td><input type="number" id="W1" value=""></td>
+             <td> <input type="number" id="g1"  onkeyup=calculatePercentage("g1","t1","percent1")>/ <br/> <input type="number" id="t1" onkeyup=calculatePercentage("g1","t1","percent1")> </td>
+             <td id="percent1">    </td>
+           </tr>
+             <td>Activity 2</td>
+             <td>A2</td>
+             <td><input type="number" id="W2" value=""></td>
+             <td><input type="number" id="g2" onkeyup=calculatePercentage("g2","t2","percent2")>/<br/><input type="number" id="t2" onkeyup=calculatePercentage("g2","t2","percent2")></td>
+             <td id="percent2"> </td>
+           </tr>
+             <td>Activity 3</td>
+             <td>A3</td>
+             <td><input type="number" id="W3" value=""></td>
+             <td><input type="number" id="g3" onkeyup=calculatePercentage("g3","t3","percent3")>/<br/><input type="number" id="t3" onkeyup=calculatePercentage("g3","t3","percent3")></td>
+             <td id="percent3"></td>
+           </tr>
+
+             <td>Activity 4</td>
+             <td>A4</td>
+             <td><input type="number" id="W4" value=""></td>
+             <td><input type="number" id="g4" onkeyup=calculatePercentage("g4","t4","percent4")>/<br/><input type="number" id="t4" onkeyup=calculatePercentage("g4","t4","percent4")></td>
+             <td id="percent4"></td>
+           </tr>
+         </table>
+
+        <p style='color:darkred'><b>Result</b></p>
+        <p id="result">wait</p>
+
+
+
+</style>
+        <style>
+        .button {
+          background-color: darkred;
+          border: none;
+          color: white;
+          width:6px 6px;
+
+          padding: 10px 15px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 12px; 
+          float: right;
+          cursor: pointer;
+        }
+        </style>
+
+        <button onclick="calculateMean()" class="button" style="float:right;"><b>MEAN</b></button>
+
+        <button onclick="calculateWeighted()" class="button" style="float:right;"><b>WEIGHTED</b></button>
+
+
+
+           <!--This is comments
+             -->
+
+
+    </div>
+
+
+
+  </body>
+</html>

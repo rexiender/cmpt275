@@ -1,0 +1,53 @@
+#blacklayer{
+  height:820px;
+	width:1250px;
+	background-color:black;
+	line-height: 2.0;
+	position: absolute;
+	margin-top: 0px;
+	margin-left: 40px;
+	padding-left: 10px;
+	border: 3px solid black;
+	border-radius: 5px;
+}
+#whitelayer{
+  height:700px;
+	width:1250px;
+	background-color: white;
+	line-height: 2.0;
+	position: absolute;
+	margin-top:  90px;
+	margin-left: 40px;
+	padding-left: 10px;
+	border: 3px solid white;
+	border-radius: 5px;
+}
+
+#bluelayer{
+  height:560px;
+	width:900px;
+	background-color: #E8F2F3;
+	line-height: 2.0;
+	position: absolute;
+	margin-top: 188px;
+	margin-left: 61px;
+	padding-left: 10px;
+	border: 1px solid #E8F2F3;
+	border-radius: 5px;
+
+}
+
+span{
+   font-weight: normal;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+input[type=number] {
+    -moz-appearance:textfield; /* Firefox */
+}
