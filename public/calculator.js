@@ -33,7 +33,7 @@ function calculateMean(percent1,percent2,percent3,percent4){
   //document.getElementById(result).innerHTML = result;
   console.log(result);
 
-  document.getElementById("result").innerHTML =result;
+  document.getElementById("result").innerHTML =result.toFixed(2);
 
   //console.log("hello world");
   //var g1=document.getElementByName("g1");
@@ -62,7 +62,7 @@ function calculateWeighted(){
   var p4=g4.value/t4.value*w4.value;
 
   let result=(p1+p2+p3+p4)/(Number(w1.value)+Number(w2.value)+Number(w3.value)+Number(w4.value));
-  document.getElementById("result").innerHTML =result;
+  document.getElementById("result").innerHTML =result.toFixed(2);
   //document.getElementById(result).innerHTML = result;
 
   console.log(result);
