@@ -8,9 +8,10 @@ function calculatePercentage(grade,total,percent){
   var g1=document.getElementById(grade);
   var t1=document.getElementById(total);
 
-  document.getElementById(percent).innerHTML = g1.value/t1.value;
   var percent=g1.value/t1.value;
-  console.log(percent);
+
+  document.getElementById(percent).innerHTML = percent.toFixed(3);
+
 
   return percent;
 }
