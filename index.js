@@ -1,13 +1,16 @@
 const express = require('express');
 const path = require('path');
-const PORT = process.env.PORT || 5049
+const PORT = process.env.PORT || 5064
+
 var app = express();
-const{Pool}=require ('pg');
-var pool;
-pool =new Pool(
-{
-  connectionString: process.env.Database_URL
-});
+var Pool=require ('pg');
+var conString="postgres://apple:1234@localhost/tokimon";
+var pool= new Pool.Client(conString);
+pool.connect();
+//var pool =new Pool(
+//{
+  //connectionString: process.env.Database_URL
+//});
 
 
 app.use(express.static(path.join(__dirname, 'public')));
@@ -16,22 +19,46 @@ app.use(express.urlencoded({ extended: false }));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.get('/', (req, res) => {res.render('pages/grade.ejs')});
-app.get('/hello', (req,res) => { res.render('pages/hello')});
-app.get('/users',(req,res)=>{
-  var getUsersQurey='SELECT *FROM userstab';
+//app.get('/tokimon', (req,res) => { res.render('pages/tokimon')});
+
+app.get('/tokimon',(req,res)=>{
+  var getUsersQurey='SELECT * FROM tokimon';
+
+
   console.log(getUsersQurey)
   pool.query(getUsersQurey,(error,result)=>{
     if (error)
       res.end(error);
     var results={'rows':result.rows}
+    var count={'tokimon':result.rowCount}
+    console.log (count);
     console.log(results);
-    res.render('pages/users.ejs',results) 
+    res.render('pages/tokimon.ejs',results) 
   })
 });
-app.post('/login', (req, res) => {
-  //console.log('post');
-  var username = req.body.user;
-  var password = req.body.pwd;
-  res.send(`Hello, ${username}.  You have password ${password}`);
+
+
+
+app.post('/AddTokimon', (req, res) => {
+  console.log('Addtokimon~');
+  var name = req.body.Name;
+  var weight = req.body.Weight;
+  var height= req.body.Height;
+  var fly= req.body.Fly;
+  var fight= req.body.Fight;
+  var fire= req.body.Fire;
+  var water= req.body.Water;
+  var electric= req.body.Electric;
+  var frozen= req.body.Frozen;
+  var name_of_trainer= req.body.Trainer;
+  var total=(fly-0)+(fight-0)+(fire-0)+(water-0)+(electric-0)+(frozen-0);
+  var InsertQuery='INSERT INTO tokimon (name,weight,height,fly,fight,fire,water,electric,frozen,total,name_of_trainer) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11)'
+  pool.query(InsertQuery,[name,weight,height,fly,fight,fire,water,electric,frozen,total,name_of_trainer],(err,res)=>{
+    if (err)
+      res.end(error);
+  });
+  res.send(`Congraduation! Your tokimon ${name} has total ability: ${total}`);
 });
+
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`));
+
