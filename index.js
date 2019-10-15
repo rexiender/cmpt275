@@ -1,7 +1,6 @@
 const express = require('express');
 const path = require('path');
-const PORT = process.env.PORT || 5064
-
+const PORT = process.env.PORT || 6000
 var app = express();
 var Pool=require ('pg');
 var conString="postgres://apple:1234@localhost/tokimon";

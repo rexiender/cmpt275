@@ -39,7 +39,42 @@
                     
                 <%});%>
               </ul>
-              <button onclick="AddTokimon()" id= "add">Add</button>
+
+              <form method="POST" action="/AddTokimon">
+             
+              Name:
+              <input type="text" name="Name" placeholder="Name">
+              <br>
+              Weight:
+              <input type="number" name="Weight" placeholder="Weight">
+              <br>
+              Height:
+              <input type="number" name="Height" placeholder="Height">
+              <br>
+              Fly:
+              <input type="number" name="Fly" placeholder="Fly">
+              <br>
+              Fight:
+              <input type="number" name="Fight" placeholder="Fight">
+              <br>
+              Fire:
+              <input type="number" name="Fire" placeholder="Fire">
+              <br>
+              Water:
+              <input type="number" name="Water" placeholder="Water">
+              <br>
+              Electric:
+              <input type="number" name="Electric" placeholder="Electric">
+              <br>
+              Frozen:
+              <input type="number" name="Frozen" placeholder="Frozen">
+      
+              <br>
+              Name of Trainer:
+              <input type="text" name="Trainer" placeholder="Name of Trainer">
+              <br>
+              <input type="submit" value="Add Tokimon">
+              </form> 
         </div>
       </body>
 </html>

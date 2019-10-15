@@ -12,3 +12,4 @@ function DisplayAll(){
 function DeleteTokimon(){
    console.log("Delete The Tokimon");
 };
+
