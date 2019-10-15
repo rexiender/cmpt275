@@ -17,7 +17,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-app.get('/', (req, res) => {res.render('pages/grade.ejs')});
+app.get('/', (req, res) => {res.render('pages/tokimon.ejs')});
 //app.get('/tokimon', (req,res) => { res.render('pages/tokimon')});
 
 app.get('/tokimon',(req,res)=>{
