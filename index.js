@@ -2,14 +2,14 @@ const express = require('express');
 const path = require('path');
 const PORT = process.env.PORT || 6000
 var app = express();
-var Pool=require ('pg');
-var conString="postgres://apple:1234@localhost/tokimon";
-var pool= new Pool.Client(conString);
-pool.connect();
-//var pool =new Pool(
-//{
-  //connectionString: process.env.Database_URL
-//});
+const{Pool}=require ('pg');
+//var conString="postgres://apple:1234@localhost/tokimon";
+var pool;
+pool =new Pool(
+{
+  connectionString: process.env.Database_URL
+});
+
 
 
 app.use(express.static(path.join(__dirname, 'public')));
