@@ -5,10 +5,17 @@ var app = express();
 //var conString="postgres://apple:1234@localhost/tokimon";
 const { Pool } = require('pg');
 const pool = new Pool({ 
-  connectionString: process.env.Database_URL
+  connectionString: process.env.Database_URL,
+  ssl:true,
  });
-pool.query('INSERT INTO tokimon (name,weight) values("rui",80)', (error, result) => {
-          console.log(result);
+ pool.connect();
+ 
+pool.query('SELECT * FROM tokimon;', (err, res) => {
+  if (err) throw err;
+  for (let row of res.rows) {
+    console.log(JSON.stringify(row));
+  }
+  pool.end();
 });
 
 
