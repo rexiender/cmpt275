@@ -1,13 +1,14 @@
 const express = require('express');
 const path = require('path');
-const PORT = process.env.PORT || 6000
+const PORT = process.env.PORT || 6001
 var app = express();
-const{Pool}=require ('pg');
 //var conString="postgres://apple:1234@localhost/tokimon";
-var pool;
-pool =new Pool(
-{
+const { Pool } = require('pg');
+const pool = new Pool({ 
   connectionString: process.env.Database_URL
+ });
+pool.query('INSERT INTO tokimon (name,weight) values("rui",80)', (error, result) => {
+          console.log(result);
 });
 
 
@@ -17,7 +18,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-app.get('/', (req, res) => {res.render('pages/tokimon.ejs')});
+app.get('/', (req, res) => {res.render('pages/index')});
 //app.get('/tokimon', (req,res) => { res.render('pages/tokimon')});
 
 app.get('/tokimon',(req,res)=>{
