@@ -24,7 +24,6 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.get('/', (req, res) => {res.render('pages/index')});
 //app.get('/tokimon', (req,res) => { res.render('pages/tokimon')});
-
 app.get('/tokimon',(req,res)=>{
   var getUsersQurey='SELECT * FROM tokimon';
   console.log(getUsersQurey)
