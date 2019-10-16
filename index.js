@@ -1,23 +1,17 @@
 const express = require('express');
 const path = require('path');
-const PORT = process.env.PORT || 6001
+const PORT = process.env.PORT || 6002
 var app = express();
 //var conString="postgres://apple:1234@localhost/tokimon";
 const { Pool } = require('pg');
 const pool = new Pool({ 
-  connectionString: process.env.Database_URL,
-  ssl:true,
+  connectionString: process.env.Database_URL
  });
  pool.connect();
- 
-pool.query('SELECT * FROM tokimon;', (err, res) => {
-  if (err) throw err;
-  for (let row of res.rows) {
-    console.log(JSON.stringify(row));
-  }
-  pool.end();
-});
-
+/*
+pool.query('INSERT INTO tokimon (name, weight) values ("bob",100);', (err, res) => {
+  console.log("hi")
+});*/
 
 
 app.use(express.static(path.join(__dirname, 'public')));
@@ -32,6 +26,7 @@ app.get('/tokimon',(req,res)=>{
   var getUsersQurey='SELECT * FROM tokimon';
 
 
+/*
   console.log(getUsersQurey)
   pool.query(getUsersQurey,(error,result)=>{
     if (error)
@@ -67,5 +62,5 @@ app.post('/AddTokimon', (req, res) => {
   res.send(`Congraduation! Your tokimon ${name} has total ability: ${total}`);
 });
 
+*/
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`));
-
