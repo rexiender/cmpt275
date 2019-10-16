@@ -6,7 +6,7 @@
         <link rel="stylesheet" href="Tokimon.css">
         <script src="Tokimon.js"></script>
       </head>
-      <body bgcolor="lightgreen">
+      <body bgcolor="lightgreen" >
         <h1 align="center">Welcome To Tokimon's World 
         </h1>
         <div align="center" id="content">
@@ -31,19 +31,20 @@
                     };
                   </style>
             
+            <form  method="POST" action="/DisplayAllTokimon">
+              <input type="submit" value="Display All Information" />
+            </form>
                 <% rows.forEach((r)=>{ %>
-                  <li><button class="button" id="<%=r.name%>" onclick="DisplayAll()"> <%=r.name%> </button>
-                    <button id="delete <%=r.name%>" onclick="DeleteTokimon()" >Delete</button>
-                    
-                  </li>
+                  <li>
+                    <button class="button" id="<%=r.name%>" onclick="DisplayAll()"> <%=r.name%> </button>
+                  </li> 
                     
                 <%});%>
-              </ul>
-
-              
+              </ul>   
 
               <form method="POST" action="/AddTokimon">
-             
+              Add Tokimon here
+              <br>
               Name:
               <input type="text" name="Name" placeholder="Name">
               <br>
@@ -77,6 +78,13 @@
               <br>
               <input type="submit" value="Add Tokimon">
               </form> 
+
+              <div>
+                <form method="POST" action="/DeleteTokimon">
+                  <input type="text" name="ToDelete" placeholder="The name of To be deleted tokimon ">
+                  <input type="submit" value="Delete Tokimon" >
+                </form>
+              </div>
         </div>
       </body>
 </html>

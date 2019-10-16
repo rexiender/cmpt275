@@ -1,15 +1,17 @@
 const express = require('express');
 const path = require('path');
-const PORT = process.env.PORT || 8002
+const PORT = process.env.PORT || 8019
 var app = express();
-/* CAN NOT CONNECT HEROKU POSTGRES
+/*CAN NOT CONNECT HEROKU POSTGRES
+
 //var conString="postgres://apple:1234@localhost/tokimon";
 const { Pool } = require('pg'); 
-const pool = new Pool({ 
+const pool = new Pool({ ß
   connectionString: process.env.Database_URL,
+  ssl: true 
  });
 */
-
+ //connect to local postgres instead
 var conString="postgres://apple:1234@localhost/tokimon";
 var Pool=require('pg');
 
@@ -32,11 +34,30 @@ app.get('/tokimon',(req,res)=>{
     if (error)
       res.end(error);
     var results={'rows':result.rows}
-    var count={'tokimon':result.rowCount}
-    console.log (count);
+    
     console.log(results);
     res.render('pages/tokimon.ejs',results) 
-  })
+});
+
+app.post('/DisplayAllTokimon', (req,res) => {
+  var getUsersQurey='SELECT * FROM tokimon';
+  pool.query(getUsersQurey,(error,result)=>{
+    if (error)
+      res.end(error);
+    var results={'rows':result.rows}
+    var count={'tokimon':result.rowCount}
+
+    var users = JSON.parse(results);
+    var filtered = _.where(name, {name: "a"});
+    console.log(count);
+    var i;
+    for (i = 0; i < count; i++) { 
+      res.send(results[i].name);
+      
+    }
+      
+    });
+  });
 });
 
 
@@ -60,6 +81,18 @@ app.post('/AddTokimon', (req, res) => {
       res.end(error);
   });
   res.send(`Congradulation! Your tokimon ${name} has total ability: ${total}`);
+});
+
+
+app.post('/DeleteTokimon', (req, res) => {
+  console.log('Delete tokimon~');
+  var item=req.body.ToDelete;
+  console.log(item);
+  var deletequery='DELETE FROM tokimon WHERE name=$1'
+  pool.query(deletequery,[item]);
+
+  res.send(`Delete ${req.body.ToDelete} succefullly.`);
+
 });
 
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`));

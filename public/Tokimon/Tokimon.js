@@ -5,8 +5,9 @@ function AddTokimon(){
 };
 
 
-function DisplayAll(){
-   console.log("Display all info");
+function DisplayAll(varchar name){
+
+   console.log(name);
 
 };
 function DeleteTokimon(){
