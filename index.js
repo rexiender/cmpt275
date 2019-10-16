@@ -1,17 +1,20 @@
 const express = require('express');
 const path = require('path');
-const PORT = process.env.PORT || 6002
+const PORT = process.env.PORT || 8002
 var app = express();
+/* CAN NOT CONNECT HEROKU POSTGRES
 //var conString="postgres://apple:1234@localhost/tokimon";
-const { Pool } = require('pg');
+const { Pool } = require('pg'); 
 const pool = new Pool({ 
-  connectionString: process.env.Database_URL
+  connectionString: process.env.Database_URL,
  });
- pool.connect();
-/*
-pool.query('INSERT INTO tokimon (name, weight) values ("bob",100);', (err, res) => {
-  console.log("hi")
-});*/
+*/
+
+var conString="postgres://apple:1234@localhost/tokimon";
+var Pool=require('pg');
+
+var pool= new Pool.Client(conString); 
+pool.connect();
 
 
 app.use(express.static(path.join(__dirname, 'public')));
@@ -24,9 +27,6 @@ app.get('/', (req, res) => {res.render('pages/index')});
 
 app.get('/tokimon',(req,res)=>{
   var getUsersQurey='SELECT * FROM tokimon';
-
-
-/*
   console.log(getUsersQurey)
   pool.query(getUsersQurey,(error,result)=>{
     if (error)
@@ -59,8 +59,7 @@ app.post('/AddTokimon', (req, res) => {
     if (err)
       res.end(error);
   });
-  res.send(`Congraduation! Your tokimon ${name} has total ability: ${total}`);
+  res.send(`Congradulation! Your tokimon ${name} has total ability: ${total}`);
 });
 
-*/
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`));

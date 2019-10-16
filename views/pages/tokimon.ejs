@@ -34,11 +34,13 @@
                 <% rows.forEach((r)=>{ %>
                   <li><button class="button" id="<%=r.name%>" onclick="DisplayAll()"> <%=r.name%> </button>
                     <button id="delete <%=r.name%>" onclick="DeleteTokimon()" >Delete</button>
-                  
+                    
                   </li>
                     
                 <%});%>
               </ul>
+
+              
 
               <form method="POST" action="/AddTokimon">
              
