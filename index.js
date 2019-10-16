@@ -17,8 +17,6 @@ var Pool=require('pg');
 
 var pool= new Pool.Client(conString); 
 pool.connect();
-
-
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
